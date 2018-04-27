@@ -1,5 +1,6 @@
 html {
-	background: linear-gradient(blue, pink);
+	/* background: linear-gradient(blue, pink); */
+	background-color: #C6ECAA;
 	background-size: cover;
 	height: 100%;
 	min-height: 100%;
