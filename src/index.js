@@ -52,11 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
           `
 
     const selectDropdown = document.getElementById('parent-list')
-    selectDropdown.innerHTML = `
-    <option value="${newList.title}">
-          ${newList.title}
-        </option>
-        `
+    const newOption = document.createElement('option')
+    newOption.innerText = `${newList.title}`
+    newOption.setAttribute('selected', true);
+    selectDropdown.appendChild(newOption)
+
     listDiv.appendChild(newListDiv)
 
     updateDeleteListEventHandlers()
@@ -70,9 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const list = document.getElementById('parent-list').value
       const description = document.getElementById('new-task-description').value
 
-      if(Object.values(Task.descriptions()).includes(description)){
-        alert("descriptions must be unique")
-        return
+      if(Task.descriptions()[list]){
+        if(Task.descriptions()[list].includes(description)){
+          alert("descriptions must be unique")
+          return
+        }
       }
 
       const priority = document.getElementById('new-task-priority').value
@@ -91,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Priority: ${priority}
       `
       taskListUl.appendChild(newTaskLi)
-      updateDeleteTaskEventHandlers()
+      updateDeleteTaskEventHandlers(description)
     })
   }
 
@@ -117,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  function updateDeleteTaskEventHandlers(){
+  function updateDeleteTaskEventHandlers(description){
     const deleteTaskButtons = document.getElementsByClassName("delete-task")
     const newestDeleteTaskButton = deleteTaskButtons.item(deleteTaskButtons.length - 1)
 
@@ -127,7 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const getUl = document.getElementById(`${taskName}-ul`);
 
       getUl.removeChild(getLi);
-      delete Task.descriptions()[taskName]
+
+      const listElement = Task.descriptions()[taskName].find((desc) => desc === description)
+      const elementIndex = Task.descriptions()[taskName].indexOf(listElement)
+      Task.descriptions()[taskName].splice(elementIndex, 1)
     })
   }
 });
