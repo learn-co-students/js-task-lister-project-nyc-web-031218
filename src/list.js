@@ -1,52 +1,48 @@
-listId = 0
+esversion: 6
+
+let listId = 0
+const store = {lists: []}
 
 class List {
   constructor(title){
     this.title = title
     this.id = listId++
+    store.lists.push(this.id)
      // () => {
-    const appContainer = document.getElementById('app-content')
-    const listContainer = document.createElement('div')
-    listContainer.setAttribute("id", "lists")
+    // const appContainer = document.getElementById('app-content')
+    const listContainer = document.getElementById('lists')
+    // listContainer.setAttribute("id", "lists")
     const newList = document.createElement('div')
-    newList.innerHTML = `<h2>${this.title}</h2>`
+    newList.className = "list"
+    newList.setAttribute("name", this.id)
+    newList.innerHTML = `<h2>${this.title}
+    <button data-title=${this.title} class="delete-list">
+      X
+    </button></h2>`;
+    // appContainer.appendChild(listContainer)
     listContainer.appendChild(newList)
-    appContainer.appendChild(listContainer)
-    // }
 
+    const deleteButton = newList.querySelector('.delete-list')
+    deleteButton.addEventListener('click', (e) =>
+      // e.preventDefault()
+      this.delete()
+    )
+
+
+    const listSelector = document.querySelector('#parent-list')
+    const newListOption = document.createElement('option')
+    newListOption.setAttribute("value", this.id)
+    // newListOption.setAttribute("id", this.id)
+    newListOption.innerText = this.title
+    listSelector.appendChild(newListOption)
+    // }
+  }
+  delete(){
+    const listContainer = document.querySelector(`[name=\"${this.id}\"]`)
+    listContainer.remove()
+    // const listSelector = document.querySelector('#parent-list')
+    const listOption = document.querySelector(`select option[value=\"${this.id}\"]`)
+    listOption.remove()
 
   }
 }
-
-//   <div id="lists">
-// <!-- begin list 1 -->
-//   <div>
-//     <h2>doughnuts
-//       <button data-title="doughnuts" class="delete-list">
-//         X
-//       </button>
-//     </h2>
-//
-//     </ul>
-//   </div>
-// <!--end list 1  -->
-//   // your code here
-// }
-// <ul>
-//     <li>
-//     Task: mocha
-//     <button data-list-title="doughnuts" data-task-name="mocha" class="delete-task">
-//         X
-//     </button>
-//     <br>
-//     Priority: low
-//   </li>
-//   <li>
-//     Task: chocolate
-//     <button data-list-title="doughnuts" data-task-name="chocolate" class="delete-task">
-//       X
-//     </button>
-//     <br>
-//     Priority: high
-//   </li>
-// </ul>

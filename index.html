@@ -1,50 +1,49 @@
 <!DOCTYPE HTML>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Flatiron Task Lister</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <div id="main-content">
     <h1>Flatiron Task Lister</h1>
 
     <form id="create-list-form" action="#" method="post">
-     <label for="new-list-title">Add a new list:</label>
-     <input required type="text" id="new-list-title" name="new-list-title" placeholder="title">
-     <input type="submit" value="Create New List">
+      <label for="new-list-title">Add a new list:</label>
+      <input required type="text" id="new-list-title" name="new-list-title" placeholder="title">
+      <input type="submit" value="Create New List">
     </form>
 
     <div id="app-content"></div>
 
 
     <script src="src/app.js"></script>
-    <script src="src/task.js"></script>
+    <!-- <script src="src/task.js"></script> -->
     <script src="src/list.js"></script>
     <script src="src/index.js"></script>
-  </div><!-- #main-content -->
+  </div>
+  <!-- #main-content -->
   <div id="app-content">
-<form id="create-task-form">
-  <label for="parent-list">Select List:</label>
-  <select id="parent-list">
-    <!-- Major key alert:
-    read the docs for HTML option selected:
-    https://www.w3schools.com/tags/att_option_selected.asp -->
-    <!-- FIXME: Need to populate select list with all of the lists. -->
-  <!-- <option value="My Dank List" selected>
-    My Dank List
-  </option> -->
+    <form id="create-task-form">
+      <label for="parent-list">Select List:</label>
+      <select id="parent-list">
   </select>
 
-  <label for="new-task-description">Task description:</label>
-  <input required type="text" id="new-task-description" placeholder="description">
+      <label for="new-task-description">Task description:</label>
+      <input required type="text" id="new-task-description" placeholder="description">
 
-  <label for="new-task-priority">Priority level:</label>
-  <input type="text" id="new-task-priority" placeholder="priority">
-  <input type="submit" value="Create New Task">
-</form>
-</div>
+      <label for="new-task-priority">Priority level:</label>
+      <input type="text" id="new-task-priority" placeholder="priority">
+      <input type="submit" value="Create New Task">
+    </form>
+    <div id="lists">
+    </div>
+  </div>
 
 </body>
+
 </html>
