@@ -7,7 +7,7 @@ class Task {
     this.desc = desc
     this.priority = priority
     this.id = taskId++
-    store.tasks.push(this.id)
+    store.tasks.push(this)
 
     const listContainer = document.querySelector(`[name=\"${this.parentListId}\"] ul`)
     // listContainer.setAttribute("id", "lists")
@@ -39,7 +39,7 @@ class Task {
 
   }
   delete(){
-    // const listContainer = document.querySelector(`[name=\"${this.parenListId}\"]`)
+    // const listContainer = document.querySelector(`[name=\"${this.parentListId}\"]`)
     const taskEntry = document.querySelector(`[task-id=\"${this.id}\"]`)
     taskEntry.remove()
   }

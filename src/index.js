@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let newTask = new Task(parentListId, desc, priority);
   })
 
-  new List("New List")
+  let testList = new List("New List")
   new List("Another List")
   new List("One More List")
 

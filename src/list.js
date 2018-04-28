@@ -5,7 +5,7 @@ class List {
   constructor(title){
     this.title = title
     this.id = listId++
-    store.lists.push(this.id)
+    store.lists.push(this)
      // () => {
     // const appContainer = document.getElementById('app-content')
     const listContainer = document.getElementById('lists')
@@ -37,7 +37,15 @@ class List {
     listSelector.appendChild(newListOption)
     // }
   }
+  tasks(){
+    return store.tasks.filter( task =>
+      task.parentListId === this.id
+    )
+  }
+
   delete(){
+    const tasks = this.tasks()
+    tasks.forEach(task => task.delete()) 
     const listContainer = document.querySelector(`[name=\"${this.id}\"]`)
     listContainer.remove()
     // const listSelector = document.querySelector('#parent-list')
