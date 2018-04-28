@@ -1,7 +1,5 @@
-esversion: 6
-
 let listId = 0
-const store = {lists: []}
+// const store = {lists: []}
 
 class List {
   constructor(title){
@@ -28,6 +26,8 @@ class List {
       this.delete()
     )
 
+    const newUl = document.createElement('ul')
+    newList.appendChild(newUl)
 
     const listSelector = document.querySelector('#parent-list')
     const newListOption = document.createElement('option')

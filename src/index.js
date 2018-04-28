@@ -1,3 +1,5 @@
+const store = {tasks: [], lists: []}
+
 document.addEventListener('DOMContentLoaded', () => {
   const createListForm = document.querySelector('#create-list-form')
   const createTaskForm = document.querySelector('#create-task-form')
