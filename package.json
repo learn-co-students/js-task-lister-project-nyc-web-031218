@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/learn-co-curriculum/js-task-lister-project",
   "devDependencies": {
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
     "learn-browser": "^0.1.12"
   }
 }
