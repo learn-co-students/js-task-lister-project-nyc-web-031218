@@ -1,3 +1,10 @@
+let taskId = 0;
+
 class Task {
-  // your code here
+  constructor(description, priority, list) {
+    this.id = ++taskId;
+    this.description = description;
+    this.priority = priority;
+    this.listId = list.id;
+  }
 }
