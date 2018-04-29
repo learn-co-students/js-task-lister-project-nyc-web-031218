@@ -24,6 +24,7 @@ class TaskLister {
         const newOption = document.createElement("option");
         newOption.value = listInput;
         newOption.innerText = listInput;
+        newOption.selected = true;
         selectList.append(newOption);
       }
 
@@ -38,8 +39,36 @@ class TaskLister {
       newListContainer.append(list.render());
 
       listForm.reset();
+
+      // event listener for adding new tasks
+      const createTaskForm = document.getElementById("create-task-form");
+
+      createTaskForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        const listSelected = document.getElementById('parent-list').value;
+        const listObject = List.findByName(listSelected);
+        const description = document.getElementById('new-task-description').value;
+        const priority = document.getElementById('new-task-priority').value;
+
+        const task = new Task(description, priority, listObject);
+
+        const listUl = document.querySelector(`#list-id-${listObject.id} ul`);
+        listUl.append(task.render());
+
+        const deleteTaskButton = document.querySelector(`[data-task-title="${task.description}"]`)
+
+        deleteTaskButton.addEventListener('click', function(event) {
+          const index = store['tasks'].indexOf(task);
+          store['tasks'].splice(index, 1);
+          document.getElementById(`task-id-${task.id}`).remove();
+        });
+
+        createTaskForm.reset();
+      })
     });
 
-    return (`<h1>Welcome to Flavortown</h1>`);
+    // return (`<h1>Welcome to Flavortown</h1>`);
   }
 }

@@ -7,8 +7,12 @@ class List {
     store['lists'].push(this);
   }
 
+  static findByName(name) {
+    return store['lists'].find( (list) => { return list.name === name; } );
+  }
+
   tasks() {
-    
+    return store['tasks'].filter( (task) => { return task.listId === this.id; });
   }
 
   render() {
@@ -26,21 +30,28 @@ class List {
     deleteButton.setAttribute("class", "delete-list");
     deleteButton.innerText = "X";
 
-    deleteButton.addEventListener('click', function() {
-      // const button = document.querySelector(`[data-title=${this.name}]`)
-      document.querySelector(`option[value=${this.name}]`).remove();
+    deleteButton.addEventListener('click', function(event) {
+      document.querySelector(`option[value="${this.name}"]`).remove();
       document.getElementById(`list-id-${this.id}`).remove();
 
       const indexInStore = store['lists'].indexOf(this)
       store['lists'].splice(indexInStore, 1);
 
+      this.tasks().forEach( (task) => {
+        const taskIndex = store['tasks'].indexOf(task);
+        store['tasks'].splice(taskIndex, 1);
+      });
+
       if (store['lists'].length === 0) {
         document.getElementById('create-task-form').remove();
+        document.getElementById('lists').remove();
       }
     }.bind(this));
 
+    const ul = document.createElement("ul");
+
     listTitle.append(deleteButton);
-    newList.append(listTitle);
+    newList.append(listTitle, ul);
 
     return newList;
   }
