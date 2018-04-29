@@ -8,19 +8,19 @@ class Task {
     this.priority = priority
     this.id = taskId++
     store.tasks.push(this)
-
-    const listContainer = document.querySelector(`[name=\"${this.parentListId}\"] ul`)
+    let listContainer = document.querySelector(`[id-name=\"${this.parentListId}\"] ul`)
     // listContainer.setAttribute("id", "lists")
-    const newTaskEntry = document.createElement('li')
+    let newTaskEntry = document.createElement('li')
     newTaskEntry.setAttribute('task-id', `${this.id}`)
     newTaskEntry.innerHTML = `Task: ${this.desc}
-            <button data-list-title=\"${this.id}\" data-task-name=\"$this.desc}\" class=\"delete-task\">
+            <button data-list-title="${this.id}" data-task-name="${this.desc}" class="delete-task">
               X
             </button>
             <br>
-            Priority: high`;
+            Priority: ${this.priority}`;
     // appContainer.appendChild(listContainer)
     listContainer.appendChild(newTaskEntry)
+    console.log(newTaskEntry)
 
     const deleteButton = newTaskEntry.querySelector('.delete-task')
     deleteButton.addEventListener('click', (e) =>

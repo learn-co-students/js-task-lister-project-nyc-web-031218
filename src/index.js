@@ -22,13 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
   createTaskForm.addEventListener('submit', function(e) {
     e.preventDefault()
     // console.log(e)
-    let parentListId = document.querySelector('#parent-list').selectedIndex
+    let parentListId = document.querySelector('#parent-list').value
     let desc = document.querySelector('#new-task-description').value
     let priority = document.querySelector('#new-task-priority').value
     // console.log(desc)
     let newTask = new Task(parentListId, desc, priority);
+    resetForm()
   })
 
+  let resetForm = () => {
+     document.getElementById("create-task-form").reset();
+  }
   let testList = new List("New List")
   new List("Another List")
   new List("One More List")

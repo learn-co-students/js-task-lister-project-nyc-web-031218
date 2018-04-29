@@ -12,9 +12,9 @@ class List {
     // listContainer.setAttribute("id", "lists")
     const newList = document.createElement('div')
     newList.className = "list"
-    newList.setAttribute("name", this.id)
+    newList.setAttribute("id-name", this.id)
     newList.innerHTML = `<h2>${this.title}
-    <button data-title=${this.title} class="delete-list">
+    <button data-title="${this.title}" class="delete-list">
       X
     </button></h2>`;
     // appContainer.appendChild(listContainer)
@@ -45,8 +45,8 @@ class List {
 
   delete(){
     const tasks = this.tasks()
-    tasks.forEach(task => task.delete()) 
-    const listContainer = document.querySelector(`[name=\"${this.id}\"]`)
+    tasks.forEach(task => task.delete())
+    const listContainer = document.querySelector(`[id-name=\"${this.id}\"]`)
     listContainer.remove()
     // const listSelector = document.querySelector('#parent-list')
     const listOption = document.querySelector(`select option[value=\"${this.id}\"]`)
