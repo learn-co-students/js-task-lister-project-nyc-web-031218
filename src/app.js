@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentLists = document.getElementById("lists")
       const newList = document.createElement('div')
       newList.setAttribute("id", document.getElementById("new-list-title").value)
-      newList.innerHTML = document.getElementById("new-list-title").value
+      newList.innerHTML = `<h2>${document.getElementById("new-list-title").value}</h2>`
 
 
       currentLists.appendChild(newList)
